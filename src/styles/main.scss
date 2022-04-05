@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;1,700&display=swap");
 
-
 /*colors*/
 $primary: #458ff6;
 $dark: #000;
@@ -16,9 +15,6 @@ $large-line-height: 48px;
 $article-text-size:18px;
 $article-line-height:30px;
 
-/*button*/
-$max-width-button: 200px;
-$max-height-button: 60px;
 
 /*grid items*/
 $item-width: 350px;
@@ -37,6 +33,16 @@ h4,
 h5,
 h6 {
     margin: 0;
+}
+
+body {
+    font-family: "Mulish", sans-serif;
+    background-color: rgb(255, 255, 255);
+}
+
+a {
+    text-decoration: none;
+    color: $dark;
 }
 
 @mixin logo {
@@ -79,19 +85,14 @@ h6 {
     }
 }
 
-
 @mixin button {
 
     box-sizing: border-box;
-    display: block;
+    display: inline-block;
     text-align: center;
     vertical-align: middle;
     padding: 0px 40px;
-
-
-    max-width: $max-width-button;
-    max-height: $max-height-button;
-
+    min-width: 200px;
 
     background: $primary;
     color: $extra-light;
@@ -122,7 +123,6 @@ h6 {
     }
 }
 
-
 @mixin outline {
     background-color: $extra-light;
     border-color: $primary;
@@ -135,22 +135,101 @@ h6 {
     }
 }
 
-body {
-    font-family: "Mulish", sans-serif;
-    background-color: rgb(255, 255, 255);
-}
+@mixin header-mini {
+    .header {
+        &-navbar {
+            box-sizing: border-box;
+            position: fixed;
+            width: 100%;
+            margin: 0;
+            padding: 20px 30px;
+            background-color: rgba(255, 255, 255, 0.89);
 
-a {
-    text-decoration: none;
-    color: $dark;
-}
+            &__list {
+                display: none;
+                width: 100%;
 
+                &.active {
+                    display: block;
+                    position: absolute;
+                    margin-top: 270px;
+                    background: #ffffffd8;
+                    left: 0;
+                    text-align: center;
+                    line-height: 20px;
+                    padding: 10px 0;
+                    font-size: $article-text-size;
+                }
+
+                &__item {
+                    margin-bottom: 10px;
+                }
+            }
+
+
+            &__burger {
+                display: block;
+                cursor: pointer;
+                background-color: #458ff6;
+                width: 50px;
+                height: 50px;
+
+                &.bar {
+                    transition: all 1s ease-in-out;
+                }
+
+                &.active {
+                    background: tomato;
+
+                    .bar:nth-child(1) {
+                        transform: translateY(8px) rotate(45deg);
+                        transition: all .5s ease-in-out;
+
+                    }
+
+                    .bar:nth-child(3) {
+                        transform: translateY(-8px) rotate(-45deg);
+                        transition: all .5s ease-in-out;
+                    }
+
+                    .bar:nth-child(2) {
+                        transform: translateX(-40px);
+                        transition: all 0.5s ease-in-out;
+
+                    }
+                }
+
+                &>span {
+                    margin-top: 20px;
+                    display: block;
+                    content: '';
+                    width: 25px;
+                    height: 3px;
+                    margin: 5px auto;
+                    transition: all .3 ease-in-out;
+                    background: #fff;
+
+                    &:first-child {
+                        margin-top: 15px;
+                    }
+                }
+            }
+
+
+            &__item {
+                margin: 0 10px;
+            }
+
+            &__link {
+                font-size: $article-text-size;
+            }
+        }
+    }
+}
 
 .container {
-    padding: 0 20px;
     margin: 0 auto;
-    min-width: $content-width;
-    width: $content-width;
+    max-width: $content-width;
 }
 
 .header {
@@ -170,15 +249,12 @@ a {
 
             &__item {
                 margin: 0 20px;
-               
 
                 &:last-child {
                     margin-right: 0;
                 }
             }
         }
-
-
 
         &__link {
             font-weight: 400;
@@ -198,74 +274,71 @@ a {
     }
 }
 
+
 .main {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     &__text {
-        width: 445px;
-    }
+        max-width: 445px;
 
-    &__title {
-        margin-top: 180px;
-        font-weight: 700;
-        font-size: $large-text-size;
-        line-height: 56px;
-        color: $dark;
-    }
+        &__title {
+            margin-top: 180px;
+            font-weight: 700;
+            font-size: $large-text-size;
+            line-height: 56px;
+            color: $dark;
+        }
 
-    &__descr {
-        margin-top: 25px;
-        font-weight: 300;
-        font-size: 21px;
-        line-height: 32px;
-        margin-bottom: 48px;
-    }
+        &__descr {
+            margin-top: 25px;
+            font-weight: 300;
+            font-size: 21px;
+            line-height: 32px;
+            margin-bottom: 48px;
+        }
 
-    &__link {
-        @include button();
+        &__link {
+            @include button();
+        }
     }
 
     &__image {
         margin-top: 80px;
+        width: 100%;
     }
 }
 
 .cards-name {
     margin: 0 auto;
+    text-align: center;
     margin-top: 200px;
-
 
     &__title {
         @include section-title-h3();
-        margin: 0 auto;
     }
 
     &__descr {
-        margin: 36px auto auto auto;
-        width: 950px;
-        height: 60px;
+        padding: 30px;
+        width: 90%;
         font-weight: 300;
         font-size: $article-text-size;
         line-height: $article-line-height;
         color: $light;
-        text-align: center;
     }
 }
 
 .grid {
     margin-top: 95px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     &__a {
         display: block;
-        width: 350px;
-        height: 350px;
+        max-width: 350px;
     }
-
 
     &__img-container {
         height: 110px;
@@ -275,8 +348,7 @@ a {
 
     &__item {
         box-sizing: border-box;
-        height: $item-height;
-        width: $item-width;
+        max-width: $item-width;
         box-shadow: 10px 40px 50px rgba(229, 233, 246, 0.4);
         padding: 55px 45px 45px 45px;
 
@@ -293,7 +365,7 @@ a {
     }
 
     &__info {
-        width: 266px;
+        max-width: 266px;
         color: $light;
         font-weight: 300;
         font-size: 16px;
@@ -324,12 +396,11 @@ a {
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
-    height: 500px;
     margin-top: 240px;
 
     &__text {
         margin: 0 50px;
-        width: 445px;
+        max-width: 445px;
     }
 
     &__title {
@@ -361,13 +432,10 @@ a {
     &__link {
         @include button();
         @include outline();
-
-
     }
 
     &__image {
-        width: 650px;
-        height: 477px;
+        max-width: 650px;
     }
 }
 
@@ -376,18 +444,11 @@ a {
 }
 
 .reviews {
-
+    margin-top: 100px;
     display: block;
     background: linear-gradient(208.18deg, #67C3F3 9.05%, #5A98F2 76.74%);
     border-radius: 24px;
-    height: 360px;
-    max-height: 425px;
-    margin: 0 auto;
-    padding-top: 60px;
-
-    &__pos {
-        margin-top: 280px;
-    }
+    padding: 60px;
 
     &__title {
         @include section-title-h3;
@@ -402,7 +463,7 @@ a {
     }
 
     &__descr {
-        width: 880px;
+        max-width: 880px;
         color: $extra-light;
         display: flex;
         margin: 0 auto;
@@ -411,8 +472,8 @@ a {
         align-items: center;
 
         &__img {
-            width: 137px;
-            height: 137px;
+            min-width: 137px;
+            min-height: 137px;
             border: 3px solid $extra-light;
             border-radius: 70px;
             background-image: url("../images/man.png");
@@ -420,7 +481,7 @@ a {
 
         &__fullname {
             margin-left: 30px;
-            width: 180px;
+            max-width: 180px;
 
             &-name {
                 font-weight: 700;
@@ -437,7 +498,7 @@ a {
 
         &__text {
             margin-left: 110px;
-            width: 420px;
+            max-width: 420px;
             font-weight: 400;
             font-size: 19px;
             line-height: $article-line-height;
@@ -446,11 +507,6 @@ a {
 }
 
 .article {
-    &__bottom {
-        width: 250px;
-        margin-left: 33px;
-    }
-
     &__item {
         box-sizing: border-box;
         display: block;
@@ -462,45 +518,51 @@ a {
         &:hover {
             box-shadow: 10px 40px 50px rgba(142, 142, 142, 0.4);
         }
+
+        &__img-container>img {
+            border-radius: 20px 20px 0 0;
+            width: 100%;
+            height: 240px;
+        }
+
+        &__text {
+            margin-top: 25px;
+            font-weight: 700;
+            font-size: 21px;
+            line-height: 32px;
+        }
+
+        &__info {
+            margin-top: 12px;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 28px;
+        }
+
+        &__button {
+            margin-top: 30px;
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 28px;
+            color: $primary;
+        }
+
+        &__bottom {
+            max-width: 250px;
+            margin-left: 33px;
+        }
     }
 
-    &__img-container>img {
-        border-radius: 20px 20px 0 0;
-        width: 100%;
-        height: 240px;
-    }
-
-    &__text {
-        margin-top: 25px;
-        font-weight: 700;
-        font-size: 21px;
-        line-height: 32px;
-    }
-
-    &__info {
-        margin-top: 12px;
-        font-weight: 300;
-        font-size: 16px;
-        line-height: 28px;
-    }
-
-    &__button {
-        margin-top: 30px;
-        font-weight: 600;
-        font-size: 17px;
-        line-height: 28px;
-        color: $primary;
-    }
 }
 
 .footer {
     width: 100%;
     background: linear-gradient(183.41deg, #67C3F3 -8.57%, #5A98F2 82.96%);
     color: $extra-light;
-    height: 100%;
 
     &-wrap {
         display: flex;
+        flex-wrap: wrap;
         padding: 109px 0;
 
         &__first-block {
@@ -524,25 +586,27 @@ a {
             }
         }
 
-        &__col {
-            margin-left: 145px;
+        &__buttom {
+            display: flex;
 
-            &>h2 {
-                font-weight: 700;
-                font-size: 20px;
-                line-height: 60px;
-            }
+            &__col {
+                margin-left: 145px;
 
-            display: block;
+                &>h2 {
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 60px;
+                }
 
-            &>ul {
-                list-style-type: none;
+                &>ul {
+                    list-style-type: none;
 
-                &>a {
-                    color: $extra-light;
-                    font-weight: 300;
-                    font-size: $article-text-size;
-                    line-height: 38px;
+                    &>a {
+                        color: $extra-light;
+                        font-weight: 300;
+                        font-size: $article-text-size;
+                        line-height: 38px;
+                    }
                 }
             }
         }
@@ -553,920 +617,188 @@ a {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
- ##Device = Desktops
- ##Screen = 1281px to higher resolution desktops
-*/
 @media (min-width: 1281px) {
-    $content-width: 1024px;
-
-    .container {
-        min-width: $content-width;
-        width: $content-width;
-    }
-
     footer {
         width: 100%;
     }
 }
 
-/* 
-##Device = Laptops, Desktops
-##Screen = B/w 1025px to 1280px
-*/
-@media (min-width: 1025px) and (max-width: 1280px) {
-    $content-width: 900px;
-    /*main*/
-    $large-text-size: 52px;
-    $large-line-height: 52px;
-    /*article*/
-    $article-text-size: 20px;
-    $article-line-height: 30px;
+@media (min-width: 1001px) and (max-width: 1280px) {
+    .header {
+        &-navbar {
 
-    /*button*/
-    $max-width-button: 200px;
-    $max-height-button: 60px;
+            &__link {
+                font-size: $article-text-size;
+            }
+        }
+    }
 
-    /*grid items*/
-    $item-width: 430px;
-    $item-height: 350px;
+    .show-section {
+        justify-content: center;
 
+        &__image {
+            width: 100%;
+        }
+    }
 
-    .container {
+    .footer {
+        &-wrap {
+            padding: 30px 0 0 0;
+
+            &__first-block {
+                width: 400px;
+                font-size: $article-text-size;
+
+                &>p {
+                    margin-top: 40px;
+                }
+            }
+
+            &__col {
+                margin-left: 50px;
+            }
+        }
+
+    }
+}
+
+@media (min-width: 861px) and (max-width: 1160px) {
+    @include header-mini;
+
+    .main {
+        flex-direction: column;
+        padding-top: 90px;
+
+        &__text__title {
+            margin: 0;
+        }
+
+        &__image {
+            margin: 0;
+            width: 90%;
+        }
+    }
+
+    .show-section {
+        margin: 0px;
+        justify-content: center;
+        flex-direction: column-reverse;
+
+        &__image {
+            margin: 0;
+            width: 100%;
+        }
+    }
+
+    .button-center__container {
+        margin: 20px auto;
+    }
+
+    .footer-wrap {
+        padding: 20px;
+
+        &__buttom__col {
+            margin: 10%;
+        }
+    }
+
+}
+
+@media (min-width: 301px) and (max-width: 860px) {
+    @include header-mini;
+    .show-section__title::after {
+        display: none;
+    }
+    .main {
         margin: 0 auto;
-        min-width: $content-width;
-        width: $content-width;
-    }
+        padding: 0 auto;
+        text-align: center;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        padding-top: 90px;
 
-    .header {
-        &-navbar {
-            margin-top: 15px;
-
-            &__link {
-                font-size: $article-text-size;
-            }
-        }
-    }
-
-    .main {
-        &__text {
-            width: 445px;
-            height: 500px;
+        &__text__title {
+            margin: 0;
         }
 
         &__image {
             margin: 0;
-            width: 500px;
-            left: 0px;
-        }
-
-        &__title {
-            margin-top: 40px;
-            font-size: $large-text-size;
-        }
-    }
-
-    .cards-name {
-        margin: 180px 0 20px 0;
-
-        &__descr {
-            width: 100%;
-            height: 100%;
-            font-size: $article-text-size;
-            line-height: $article-line-height;
-        }
-    }
-
-    .grid {
-
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
-
-        &__item {
-            height: $item-height;
-            width: $item-width;
-        }
-
-        &__info {
-            line-height: $article-line-height;
+            width: 50%;
         }
     }
 
     .show-section {
-        height: 500px;
-        margin-top: 240px;
+        margin: 0px;
+        justify-content: center;
+        flex-direction: column;
+        &__image {
+            margin: 0 auto;
+            width: 80%;
+        }
+    }
+
+    .reviews__descr {
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &__fullname {
+            margin: 0;
+        }
 
         &__text {
-            margin: 0 50px;
-            width: 445px;
-        }
-
-        &__title {
-            margin-top: 20px;
-        }
-
-        &__descr {
-            font-size: $article-text-size;
-            line-height: $article-line-height;
             margin: 0;
-            margin-bottom: 30px;
-        }
-
-        &__image {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    .article {
-        &__bottom {
-            width: 250px;
-            margin-left: 33px;
-        }
-
-        &__item {
-            width: $item-width;
-
-            &:last-child {
-                display: none;
-            }
-        }
-    }
-
-
-    .footer {
-        &-wrap {
-            padding: 30px 0 0 0;
-
-            &__first-block {
-                width: 400px;
-                font-size: $article-text-size;
-
-                &>p {
-                    margin-top: 40px;
-                }
-            }
-
-            &__col {
-                margin-left: 50px;
-            }
-        }
-
-    }
-
-
-}
-
-/* 
-##Device = Tablets, iPads 
-##Screen = B/w 768px to 1024px
-*/
-@media (min-width: 768px) and (max-width: 1024px) {
-    $content-width: 800px;
-
-    .container {
-        min-width: $content-width;
-        width: $content-width;
-    }
-
-    .small-container {
-        width: 100%;
-    }
-
-    /*main*/
-    $large-text-size: 40px;
-    $large-line-height: 50px;
-    /*article*/
-    $article-text-size: 25px;
-    $article-line-height: 25px;
-
-    /*button*/
-    $max-width-button: 200px;
-    $max-height-button: 60px;
-
-    /*grid items*/
-    $item-width: 330px;
-    $item-height: 350px;
-
-    .header {
-        &-navbar {
-            position: fixed;
-            width: $content-width ;
-            margin: 0;
-            padding:  20px 0;
-            background-color: rgba(255, 255, 255, 0.89);
-
-            &__list {
-                display: none;
-                width: 100%;
-
-                &.active {
-                    display: block;
-                    position: absolute;
-                    margin-top: 270px;
-                    background: #ffffffd8;
-                    left: 0;
-                    text-align: center;
-                    line-height: 20px;
-                    padding: 10px 0;
-                    font-size: $article-text-size;
-                }
-
-                &__item {
-                    margin-bottom: 10px;
-                }
-            }
-
-            &-logo {}
-
-            &__burger {
-                display: block;
-                cursor: pointer;
-                background-color: #458ff6;
-                width: 50px;
-                height: 50px;
-                &.bar {
-                    transition: all 1s ease-in-out;
-                }
-                &.active {
-                    background: tomato;
-                    .bar:nth-child(1) {
-                        transform:  translateY(8px) rotate(45deg);
-                        transition: all .5s ease-in-out;
-                       
-                    }
-                    .bar:nth-child(3) {
-                        transform: translateY(-8px) rotate(-45deg);
-                        transition: all .5s ease-in-out;
-                    }
-                    .bar:nth-child(2) {
-                        transform: translateX(-40px) ;
-                        transition: all 0.5s ease-in-out;
-
-                    }
-                }
-
-                &>span {
-                    margin-top: 20px;
-                    display: block;
-                    content: '';
-                    width: 25px;
-                    height: 3px;
-                    margin: 5px auto;
-                    transition: all .3 ease-in-out;
-                    background: #fff;
-
-                    &:first-child {
-                        margin-top: 15px;
-                    }
-                }
-            }
-
-            &__item {
-                margin: 0 10px;
-            }
-
-            &__link {
-                font-size: $article-text-size;
-            }
-        }
-    }
-
-    .main {
-        padding-top: 60px;
-
-        &__image {
-            margin: 0;
-            width: 400px;
-            left: 0px;
-        }
-
-        &__title {
-            margin: 0;
-            margin-top: 40px;
-            font-size: $large-text-size;
-            line-height: $large-line-height;
-            width: 300px;
-        }
-    }
-
-    .cards-name {
-        &__descr {
-            width: 100%;
-            height: 100%;
-            font-size: $article-text-size;
-            line-height: $article-line-height;
-        }
-    }
-
-    .grid {
-
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-
-        &__item {
-            height: $item-height;
-            width: $item-width;
-        }
-
-        &__info {
-            line-height: $article-line-height;
-        }
-    }
-
-    .show-section {
-        height: 500px;
-        margin-top: 100px;
-
-        &__text {
-            margin: 0 50px;
-            width: 445px;
-        }
-
-        &__title {
-            margin-top: 20px;
-        }
-
-        &__descr {
-            font-size: $article-text-size;
-            line-height: $article-line-height;
-            margin: 30px 0;
-        }
-
-        &__image {
-            width: 100%;
-            height: 100%;
         }
     }
 
     .button-center__container {
-        margin-bottom: 30px;
+        margin: 20px auto;
     }
 
-    .reviews {
-        &__descr {
-            width: 550px;
+    .grid {
+        justify-content: center;
+
+        &__item {
+            margin-top: 20px;
+        }
+    }
+
+    .article__item {
+        margin-top: 60px;
+    }
+
+    .footer-wrap {
+        padding: 109px 30px;
+
+        &__first-block {
+            width: 100%;
+        }
+
+        &__buttom {
+            margin-top: 20px;
+            width: 100%;
             justify-content: space-between;
-            &__fullname{
-               display: none;
-                position: absolute;
-            }
+        }
 
-            &__text {
-                width: 300px;
-
-            }
+        &__buttom__col {
+            margin: 0;
         }
     }
 
-    .article {
-        &__item {
-            width: $item-width;
-
-            &:last-child {
-                display: none;
-            }
-        }
-    }
-
-    .footer {
-        height: 540px;
-        width: 100%;
-
-        &-wrap {
-            padding: 30px 0 0 0;
-
-            &__first-block {
-                width: 400px;
-                font-size: $article-text-size;
-
-                &>p {
-                    margin-top: 40px;
-                }
-            }
-
-            &__col {
-                margin-left: 50px;
-            }
-        }
-
-    }
 }
 
-/* 
-##Device = Low Resolution Tablets, Mobiles (Landscape)
-##Screen = B/w 481px to 767px
-*/
-@media (min-width: 481px) and (max-width: 767px) {
-    $content-width: 490px;
-
-    .container {
-        min-width: $content-width;
-        width: $content-width;
+@media (min-width: 301px) and (max-width: 540px) {
+    * {
+        text-align: center;
     }
 
-    .small-container {
-        width: 100%;
+    .grid__img-container {
+        justify-content: center;
     }
 
-    /*main*/
-    $large-text-size: 25px;
-    $large-line-height: 40px;
-    /*article*/
-    $article-text-size: 20px;
-    $article-line-height: 20px;
-
-    /*button*/
-    $max-width-button: 200px;
-    $max-height-button: 60px;
-
-    /*grid items*/
-    $item-width: 330px;
-    $item-height: 350px;
-
-    .header {
-        &-navbar {
-            position: fixed;
-            width: $content-width;
-            margin: 0;
-            padding: 10px 0;
-            background-color: rgba(255, 255, 255, 0.89);
-
-            &__list {
-                display: none;
-                width: 100%;
-
-                &.active {
-                    display: block;
-                    position: absolute;
-                    margin-top: 270px;
-                    background: #ffffffd8;
-                    left: 0;
-                    text-align: center;
-                    line-height: 20px;
-                    padding: 10px 0;
-                    font-size: $article-text-size;
-                }
-
-                &__item {
-                    margin-bottom: 10px;
-                }
-            }
-
-
-            &__burger {
-                display: block;
-                cursor: pointer;
-                background-color: #458ff6;
-                width: 50px;
-                height: 50px;
-                &.bar {
-                    transition: all 1s ease-in-out;
-                }
-                &.active {
-                    background: tomato;
-                    .bar:nth-child(1) {
-                        transform:  translateY(8px) rotate(45deg);
-                        transition: all .5s ease-in-out;
-                       
-                    }
-                    .bar:nth-child(3) {
-                        transform: translateY(-8px) rotate(-45deg);
-                        transition: all .5s ease-in-out;
-                    }
-                    .bar:nth-child(2) {
-                        transform: translateX(-40px) ;
-                        transition: all 0.5s ease-in-out;
-
-                    }
-                }
-
-                &>span {
-                    margin-top: 20px;
-                    display: block;
-                    content: '';
-                    width: 25px;
-                    height: 3px;
-                    margin: 5px auto;
-                    transition: all .3 ease-in-out;
-                    background: #fff;
-
-                    &:first-child {
-                        margin-top: 15px;
-                    }
-                }
-            }
-
-            &__item {
-                margin: 0 10px;
-            }
-
-            &__link {
-                font-size: $article-text-size;
-            }
-        }
-    }
-
-    .main {
-        padding-top: 60px;
-        &__image {
-            margin: 0;
-            width: 300px;
-            left: 0px;
-        }
-
-        &__title {
-            margin: 0;
-            margin-top: 40px;
-            font-size: $large-text-size;
-            line-height: $large-line-height;
-            width: 300px;
-        }
-    }
-
-    .cards-name {
-        &__descr {
-            width: 100%;
-            height: 100%;
-            font-size: $article-text-size;
-            line-height: $article-line-height;
-        }
-    }
-
-    .grid {
-
-        grid-template-columns: repeat(1, 1fr);
-        gap: 20px;
-
-        &__item {
-            margin-left: 15%;
-            height: $item-height;
-            width: $item-width;
-        }
-
-        &__info {
-            line-height: $article-line-height;
-        }
-    }
-
-    .show-section {
-        height: 400px;
-        margin-top: 10px;
-
-        &__text {
-            margin: 0;
-            margin-left: 20px;
-            width: 445px;
-        }
-
-        &__title {
-            margin-top: 20px;
-        }
-
-        &__descr {
-            font-size: $article-text-size;
-            line-height: $article-line-height;
-            margin: 30px 0;
-        }
-
-        &__image {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    .button-center__container {
-        margin-bottom: 30px;
-    }
-
-    .reviews {
-
-        margin-top: 20px;
-        min-height: 600px;
-        &__descr {
-            width: 550px;
-            display: block;
-            align-items: center;
-            text-align: center;
-            &__fullname {
-                margin-left: 32%;
-            }
-            &__img {
-                margin-left: 32%;
-            }
-            &__text {
-                margin: 0 10%;
-            }
-
-        }
-    }
-
-    .article {
-        &__item {
-            width: $item-width;
-            margin-left: 15%;
-            &:last-child {
-                display: block;
-            }
-        }
-    }
-
-    .footer {
-        height: 100%;
-        width: 100%;
-
-        &-wrap {
-            padding: 30px 0 0 0;
-            display: block;
-            &__first-block {
-                width: 400px;
-                font-size: $article-text-size;
-
-                &>p {
-                    margin-top: 40px;
-                }
-            }
-
-            &__col {
-                margin-left: 0px;
-                display: block
-            }
-        }
-
-    }
-}
-
-/*
-##Device = Most of the Smartphones Mobiles (Portrait)
-##Screen = B/w 320px to 479px
-*/
-@media (min-width: 320px) and (max-width: 480px) {
-    $content-width: 500px;
-
-    .container {
-        min-width: $content-width;
-        width: $content-width;
-    }
-
-    .small-container {
-        width: 100%;
-    }
-
-    /*main*/
-    $large-text-size: 40px;
-    $large-line-height: 50px;
-    /*article*/
-    $article-text-size: 25px;
-    $article-line-height: 25px;
-
-    /*button*/
-    $max-width-button: 200px;
-    $max-height-button: 60px;
-
-    /*grid items*/
-    $item-width: 330px;
-    $item-height: 350px;
-
-    .header {
-        &-navbar {
-            position: fixed;
-            width: $content-width;
-            margin: 0;
-            padding: 10px 0;
-            background-color: rgba(255, 255, 255, 0.89);
-
-            &__list {
-                transition: all .5s ease-in-out;
-                display: none;
-                width: 100%;
-
-                &.active {
-                    display: block;
-                    position: absolute;
-                    margin-top: 270px;
-                    background: #ffffffd8;
-                    left: 0;
-                    text-align: center;
-                    line-height: 20px;
-                    padding: 10px 0;
-                    font-size: $article-text-size;
-                }
-
-                &__item {
-                    margin-bottom: 10px;
-                }
-            }
-
-            &-logo {}
-
-            &__burger {
-                display: block;
-                cursor: pointer;
-                background-color: #458ff6;
-                width: 50px;
-                height: 50px;
-                &.bar {
-                    transition: all 1s ease-in-out;
-                }
-                &.active {
-                    background: tomato;
-                    .bar:nth-child(1) {
-                        transform:  translateY(8px) rotate(45deg);
-                        transition: all .5s ease-in-out;
-                       
-                    }
-                    .bar:nth-child(3) {
-                        transform: translateY(-8px) rotate(-45deg);
-                        transition: all .5s ease-in-out;
-                    }
-                    .bar:nth-child(2) {
-                        transform: translateX(-40px) ;
-                        transition: all 0.5s ease-in-out;
-
-                    }
-                }
-
-                &>span {
-                    margin-top: 20px;
-                    display: block;
-                    content: '';
-                    width: 25px;
-                    height: 3px;
-                    margin: 5px auto;
-                    transition: all .3 ease-in-out;
-                    background: #fff;
-
-                    &:first-child {
-                        margin-top: 15px;
-                    }
-                }
-            }
-
-            &__item {
-                margin: 0 10px;
-            }
-
-            &__link {
-                font-size: $article-text-size;
-            }
-        }
-    }
-
-    .main {
-        padding-top: 60px;
-
-        &__image {
-            margin: 0;
-            width: 400px;
-            left: 0px;
-        }
-
-        &__title {
-            margin: 0;
-            margin-top: 40px;
-            font-size: $large-text-size;
-            line-height: $large-line-height;
-            width: 300px;
-        }
-    }
-
-    .cards-name {
-        &__descr {
-            width: 100%;
-            height: 100%;
-            font-size: $article-text-size;
-            line-height: $article-line-height;
-        }
-    }
-
-    .grid {
-
-        grid-template-columns: repeat(1, 1fr);
-        gap: 20px;
-
-        &__item {
-            height: $item-height;
-            width: $item-width;
-        }
-
-        &__info {
-            line-height: $article-line-height;
-        }
-    }
-
-    .show-section {
-        height: 500px;
-        margin-top: 100px;
-
-        &__text {
-            margin: 0 50px;
-            width: 445px;
-        }
-
-        &__title {
-            margin-top: 20px;
-        }
-
-        &__descr {
-            font-size: $article-text-size;
-            line-height: $article-line-height;
-            margin: 30px 0;
-        }
-
-        &__image {
-            width: 100%;
-            height: 100%;
-        }
-    }
-
-    .button-center__container {
-        margin-bottom: 30px;
-    }
-
-    .reviews {
-
-        margin-top: 20px;
-        min-height: 600px;
-        &__descr {
-            width: 550px;
-            display: block;
-            align-items: center;
-            text-align: center;
-            &__fullname {
-                margin-left: 32%;
-            }
-            &__img {
-                margin-left: 32%;
-            }
-            &__text {
-                margin: 0 10%;
-            }
-
-        }
-    }
-
-
-    .article {
-        &__item {
-            width: $item-width;
-
-            &:last-child {
-                display: none;
-            }
-        }
-    }
-
-    .footer {
-        height: 100%;
-        width: 100%;
-
-        &-wrap {
-            padding: 30px 0 0 0;
-            display: block;
-            &__first-block {
-                width: 400px;
-                font-size: $article-text-size;
-
-                &>p {
-                    margin-top: 40px;
-                }
-            }
-
-            &__col {
-                margin-left: 0px;
-                display: block
-            }
-        }
-
+    .footer-wrap__buttom {
+        flex-direction: column;
     }
 }
