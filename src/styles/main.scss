@@ -233,7 +233,6 @@ a {
 
 
 .header {
-
     &-navbar {
         max-width: 1330px;
         margin: 0 auto;
@@ -241,6 +240,7 @@ a {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
 
         &-logo {
             @include logo;
@@ -281,16 +281,21 @@ a {
     max-width: $content-width;
     padding: 0 30px;
 
+
     .main-section {
+        margin-bottom: 200px;
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         &__text {
             max-width: 445px;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
 
             &__title {
-                margin-top: 180px;
                 font-weight: 700;
                 font-size: $large-text-size;
                 line-height: 56px;
@@ -298,11 +303,9 @@ a {
             }
 
             &__descr {
-                margin-top: 25px;
                 font-weight: 300;
                 font-size: 21px;
                 line-height: 32px;
-                margin-bottom: 48px;
             }
 
             &__link {
@@ -322,27 +325,32 @@ a {
         }
     }
 
-    .cards-name {
-        margin: 0 auto;
-        text-align: center;
-        margin-top: 200px;
+    .cards {
+        margin-bottom   : 95px;
+        display: flex;
+        flex-direction: column;
 
-        &__title {
-            @include section-title-h3();
-        }
+        &-name {
+            text-align: center;
 
-        &__descr {
-            padding: 30px;
-            width: 90%;
-            font-weight: 300;
-            font-size: $article-text-size;
-            line-height: $article-line-height;
-            color: $light;
+            &__title {
+                @include section-title-h3();
+            }
+
+            &__descr {
+                margin: 0 auto;
+                padding: 30px;
+                width: 90%;
+                font-weight: 300;
+                font-size: $article-text-size;
+                line-height: $article-line-height;
+                color: $light;
+            }
         }
     }
 
+
     .grid {
-        margin-top: 95px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -387,8 +395,8 @@ a {
     }
 
     .button-center {
+        margin: 100px 0;
         text-align: center;
-        margin: 0 auto;
 
         &__container {
             margin: 70px 0 200px 0;
@@ -409,15 +417,18 @@ a {
         display: flex;
         align-items: center;
         flex-direction: row-reverse;
-        margin-top: 240px;
+        justify-content: space-between;
+        padding-bottom: 140px;
 
         &__text {
-            margin: 0 50px;
             max-width: 445px;
+            min-height: 450px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
         }
 
         &__title {
-            margin-top: 60px;
             font-weight: 700;
             font-size: 36px;
             line-height: 56px;
@@ -435,11 +446,9 @@ a {
         }
 
         &__descr {
-            margin-top: 31px;
             font-weight: 300;
             font-size: $article-text-size;
             line-height: $article-line-height;
-            margin-bottom: 48px;
         }
 
         &__link {
@@ -463,11 +472,11 @@ a {
     }
 
     .reviews {
-        margin-top: 100px;
         display: block;
         background: linear-gradient(208.18deg, #67C3F3 9.05%, #5A98F2 76.74%);
         border-radius: 24px;
         padding: 60px;
+        margin-bottom: 100px;
 
         &__title {
             @include section-title-h3;
@@ -526,14 +535,26 @@ a {
     }
 
     .article {
+        padding: 60px 0;
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-between;
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
         &__item {
-            margin-top: 60px;
             box-sizing: border-box;
-            display: block;
-            width: $item-width;
-            height: 512px;
+            display: flex;
+            flex-direction: column;
+            min-width: $item-width;
+            min-height: 512px;
             box-shadow: 10px 40px 50px rgba(229, 233, 246, 0.4);
             border-radius: 20px;
+            padding-bottom: 20px;
+            margin-right: 5%;
 
             &:hover {
                 box-shadow: 10px 40px 50px rgba(142, 142, 142, 0.4);
@@ -546,21 +567,18 @@ a {
             }
 
             &__text {
-                margin-top: 25px;
                 font-weight: 700;
                 font-size: 21px;
                 line-height: 32px;
             }
 
             &__info {
-                margin-top: 12px;
                 font-weight: 300;
                 font-size: 16px;
                 line-height: 28px;
             }
 
             &__button {
-                margin-top: 30px;
                 font-weight: 600;
                 font-size: 17px;
                 line-height: 28px;
@@ -569,7 +587,11 @@ a {
 
             &__bottom {
                 max-width: 250px;
-                margin-left: 33px;
+                padding-left: 33px;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
             }
         }
 
@@ -690,7 +712,6 @@ a {
             }
 
             &__image-block {
-                margin: 0 auto;
                 width: 80%;
             }
         }
@@ -746,8 +767,6 @@ a {
         }
 
         .show-section {
-            margin: 0px;
-
             &__image-block {
                 width: 80%;
             }
