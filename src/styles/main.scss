@@ -326,7 +326,7 @@ a {
     }
 
     .cards {
-        margin-bottom   : 95px;
+        margin-bottom: 95px;
         display: flex;
         flex-direction: column;
 
@@ -706,6 +706,7 @@ a {
             justify-content: center;
             align-items: center;
             padding-top: 90px;
+            margin-bottom: 100px;
 
             &__text__title {
                 margin: 0;
@@ -757,15 +758,8 @@ a {
 
 @media (max-width: 992px) {
 
+
     .main {
-        .main-section {
-            padding-top: 90px;
-
-            &__text__title {
-                margin: 0;
-            }
-        }
-
         .show-section {
             &__image-block {
                 width: 80%;
@@ -793,8 +787,25 @@ a {
 }
 
 @media (max-width: 768px) {
+    $large-text-size: 36px;
     * {
         text-align: center;
+    }
+    .main {
+        .main-section {
+            padding-top: 90px;
+    
+            &__text {
+                min-height: 340px;
+                &__title {
+                    margin: 0;
+                    font-size: $large-text-size;
+                }
+                &__descr{
+                    font-size: 18px;
+                }
+            }
+        }
     }
 
     .show-section__title::after {
